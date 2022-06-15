@@ -1,0 +1,20 @@
+{
+  "name": "readmate",
+  "version": "1.0.0",
+  "description": "dev's project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/workin-cyber/readmate.git"
+  },
+  "author": "Binyamin-Tech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/workin-cyber/readmate/issues"
+  },
+  "homepage": "https://github.com/workin-cyber/readmate#readme"
+}
