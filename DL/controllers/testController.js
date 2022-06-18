@@ -1,11 +1,11 @@
-const { userModel } = require('../models/user')
+const { testModel } = require('../models/test')
 
 async function create(data) {
-    return await userModel.create(data);
+    return await testModel.create(data);
 
 }
 async function read(filter) {
-    return await userModel.find(filter);
+    return await testModel.find(filter);
 
 }
 async function update(filter, newData) {

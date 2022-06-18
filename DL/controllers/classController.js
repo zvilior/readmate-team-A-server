@@ -1,15 +1,15 @@
-const { userModel } = require('../models/user')
+const { classModel } = require('../models/class')
 
 async function create(data) {
-    return await userModel.create(data);
+    return await classModel.create(data);
 
 }
 async function read(filter) {
-    return await userModel.find(filter);
+    return await classModel.find(filter);
 
 }
 async function update(filter, newData) {
-    return await userModel.updateOne(filter, newData);
+    return await classModel.updateOne(filter, newData);
 }
 async function del(filter) {
     await update(filter, { isActive: flase })

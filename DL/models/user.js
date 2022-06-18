@@ -1,56 +1,70 @@
 const mongoose = require('mongoose')
+const { boolean } = require('webidl-conversions')
 
-const userSchema = new mongoose.Schema({
-    firstName : {
-        type:String,
-        require:true
-    },
-    lastName : {
-        type : String
-
-    },
-    email : {
-        type:String,
-        unique:true
-    },
-    password:{
-        type : String,
-        require : true,
-        select : false
-    },
-    createDate:{
-        type:Date,
-        default: Date.now
-    },
-    address:{
-        street:{
-            type:String
+const UserSchema = new mongoose.Schema({
+    userDetails : {
+        firstName :{
+            type : String,
+            required : true
         },
-        city:{
-            type:String
+        lastName : {
+            type : String,
+            required : true
         },
-        number:{
-            type:Number
+        dob : {
+            type : Date,
+            required : true
+        },        
+        email : {
+            type : String,
+            unique : true
+        },
+        password : {
+            type : String,
+            select : false,
+            required : true
+        },
+        level : {
+            type : String,
+            enum : ["student", "high-school", "other"]
+        },
+        classId : {
+            type: Number,
+            required : true
+        },
+        Permissions : {
+        // [admin, teacher, viewer] ??
+        }            
+        },
+    TF : [{
+        Value :{
+            type : Number,
+            required : true // what about first time??
+        },
+        Date : {
+            type : Date,
+            default : Date.now
         }
-    },
-    gender:{
-        type:String,
-        enum:["male","female"]
-    },
-    lastLog:{
-            type:Date,
-            default: Date.now
-    },
-    isActive: {
-        type:Boolean,
-        default:true
+        }],
+    TR: [{
+        // _id
+        Value :{
+            type : Number,
+            required : true // what about first time??
+        },
+        Date : {
+            type : Date,
+            default : Date.now
+        }
+        }],
+    calibration : {
+        type : String ,//?? maybe x and y 
+        required : true // what about first time??
     }
-   
+        
 })
 
-//userModol.create()
+// TODO: import connect, create fake data and check CRUD for this data.
+const UserModel = mongoose.model('User',UserSchema)
+module.exports = {UserModel}
 
-const userModel =  mongoose.model('user',userSchema)
-module.exports = {userModel}
-
-//delete1({email:'shachar2@gmail.com'});
