@@ -6,9 +6,7 @@ router.get('/', async(req,res)=>{
     const users = await userLogic.getAllUsers();
     res.send(users)
 })
-router.get("/user", async(req,res)=>{
 
-})
 
 module.exports=router;
 // const rou
