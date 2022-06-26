@@ -1,15 +1,21 @@
 const mongoose = require('mongoose')
-const { boolean } = require('webidl-conversions')
+
 
 const ClassSchema = new mongoose.Schema({
-    // _id
-    teacherId : {
-        type : Number,
-        required : true
+    teacherId: {
+        type: mongoose.SchemaTypes.ObjectId,
+        required: true,
+        ref: 'user'
+    },
+    classroomId: {
+        type: String,
+        required: true
+    },
+    isActive: {
+        type: Boolean,
+        default: true
     }
 })
 
-// TODO: import connect, create fake data and check CRUD for this data.
-const ClassModel = mongoose.model('Class',ClassSchema)
-module.exports = {ClassModel}
+module.exports = mongoose.model('class', ClassSchema)
 

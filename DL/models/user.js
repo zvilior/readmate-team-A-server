@@ -1,70 +1,67 @@
 const mongoose = require('mongoose')
-const { boolean } = require('webidl-conversions')
 
 const UserSchema = new mongoose.Schema({
-    userDetails : {
-        firstName :{
-            type : String,
-            required : true
+    userDetails: {
+        firstName: {
+            type: String,
+            required: true
         },
-        lastName : {
-            type : String,
-            required : true
+        lastName: {
+            type: String,
+            required: true
         },
-        dob : {
-            type : Date,
-            required : true
-        },        
-        email : {
-            type : String,
-            unique : true
+        dob: {
+            type: Date,
+            required: true
         },
-        password : {
-            type : String,
-            select : false,
-            required : true
+        email: {
+            type: String,
+            unique: true
         },
-        level : {
-            type : String,
-            enum : ["student", "high-school", "other"]
+        password: {
+            type: String,
+            select: false,
+            required: true
         },
-        classId : {
+        level: {
+            type: String,
+            enum: ["student", "high-school", "other"]
+        },
+        classId: {
             type: Number,
-            required : true
+            required: true
         },
-        Permissions : {
-        // [admin, teacher, viewer] ??
-        }            
-        },
-    TF : [{
-        Value :{
-            type : Number,
-            required : true // what about first time??
-        },
-        Date : {
-            type : Date,
-            default : Date.now
+        permissions: {
+            type: String,
+            enum: ["admin", "teacher", "viewer"],
+            default: "viewer"
         }
-        }],
+    },
+    TF: [{
+        Value: {
+            type: Number,
+            required: true
+        },
+        Date: {
+            type: Date,
+            default: Date.now
+        }
+    }],
     TR: [{
-        // _id
-        Value :{
-            type : Number,
-            required : true // what about first time??
-        },
-        Date : {
-            type : Date,
-            default : Date.now
-        }
-        }],
-    calibration : {
-        type : String ,//?? maybe x and y 
-        required : true // what about first time??
+        type: mongoose.SchemaTypes.ObjectId,
+        ref : 'userTrainReading'
+    }],
+    calibration: {
+        type: String,
+        required: true
+    },
+    isActive: {
+        type: Boolean,
+        default: true
     }
-        
+
 })
 
-// TODO: import connect, create fake data and check CRUD for this data.
-const UserModel = mongoose.model('User',UserSchema)
-module.exports = {UserModel}
+module.exports = mongoose.model('user', UserSchema)
+
 

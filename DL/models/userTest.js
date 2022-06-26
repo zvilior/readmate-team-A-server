@@ -1,20 +1,19 @@
 const mongoose = require('mongoose')
-const { boolean } = require('webidl-conversions')
+
 
 const UserTestSchema = new mongoose.Schema({
-    // testId (ref)
     date : {
         type : Date,
         default : Date.now
     },
     testAnswer :  [{
-        //  why do we need this id??
         questionId :{
-            type : Number,
-            required : true
+            type : mongoose.SchemaTypes.ObjectId,
+            required : true,
+            ref : 'test.questions'
         },
         answer : {
-            type : boolean,
+            type : Boolean,
             required : true // ?
         }
     }],
@@ -32,13 +31,12 @@ const UserTestSchema = new mongoose.Schema({
             required : true
         }   
     },
-    status : {
-        type : String,
-        enum : [] //??
+    isActive: {
+        type: Boolean,
+        default: true
     }
 })
 
-// TODO: import connect, create fake data and check CRUD for this data.
-const UserTestModel = mongoose.model('UserTest',UserTestSchema)
-module.exports = {UserTestModel}
+
+module.exports =  mongoose.model('UserTest',UserTestSchema)
 

@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 
 const TestSchema = new mongoose.Schema({
     
-    img:{type : Image,
+    img:{
+        type : String,
         required : true
     },
     questions : [ {
@@ -31,7 +32,6 @@ const TestSchema = new mongoose.Schema({
     }],   
 })
 
-// TODO: import connect, create fake data and check CRUD for this data.
-const TestModel = mongoose.model('Test',TestSchema)
-module.exports = {TestModel}
+module.exports =  mongoose.model('test',TestSchema)
+
 
