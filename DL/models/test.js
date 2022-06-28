@@ -6,6 +6,9 @@ const TestSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+    words :{
+        type : Number,
+    },
     questions : [ {
         title:{
             type : String,
@@ -25,11 +28,15 @@ const TestSchema = new mongoose.Schema({
             type : Number,
             required : true
         },
-        letters : {
+        chars : {
             type : Number,
             required : true
         },
-    }],   
+    }],
+    level : {
+        type:Number,
+        enum: [7,10]
+    }   
 })
 
 module.exports =  mongoose.model('test',TestSchema)
